@@ -18,12 +18,18 @@
             console.log("Countdown completed!");
           } else {
             const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
-            const minutesRemaining = Math.floor(
+            let minutesRemaining = Math.floor(
               (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
             );
-            const secondsRemaining = Math.floor(
+            let secondsRemaining = Math.floor(
               (timeRemaining % (1000 * 60)) / 1000
             );
+            if (secondsRemaining < 10) {
+              secondsRemaining = "0" + secondsRemaining;
+            }
+            if (minutesRemaining < 10) {
+              minutesRemaining = "0" + minutesRemaining;
+            }
 
             document.getElementById(
               "output"

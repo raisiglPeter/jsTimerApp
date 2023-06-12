@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS timer app</title>
+    <script>
+      function countdownTimer(targetTime) {
+        const targetDate = new Date(targetTime).getTime();
+        const timer = setInterval(calculateTimeRemaining, 1000);
+
+        function calculateTimeRemaining() {
+          const currentTime = new Date().getTime();
+          const timeRemaining = targetDate - currentTime;
+
+          if (timeRemaining <= 0) {
+            clearInterval(timer);
+            console.log("Countdown completed!");
+          } else {
+            const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
+            const minutesRemaining = Math.floor(
+              (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const secondsRemaining = Math.floor(
+              (timeRemaining % (1000 * 60)) / 1000
+            );
+
+            document.getElementById(
+              "output"
+            ).innerText = `Time remaining: ${hoursRemaining}h ${minutesRemaining}m ${secondsRemaining}s`;
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <input
+      id="targetTime"
+      type="datetime-local"
+      onblur="console.log(document.getElementById('targetTime').value)"
+    />
+    <br />
+    <br />
+    <button
+      onclick="countdownTimer(document.getElementById('targetTime').value)"
+    >
+      Set timer
+    </button>
+    <hr />
+    <p id="output"></p>
+  </body>
+</html>

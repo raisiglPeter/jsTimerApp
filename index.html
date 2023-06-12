@@ -27,7 +27,7 @@
 
             document.getElementById(
               "output"
-            ).innerText = `Time remaining: ${hoursRemaining}h ${minutesRemaining}m ${secondsRemaining}s`;
+            ).innerText = `${hoursRemaining}:${minutesRemaining}:${secondsRemaining}`;
           }
         }
       }
@@ -42,11 +42,19 @@
     <br />
     <br />
     <button
-      onclick="countdownTimer(document.getElementById('targetTime').value)"
+      onclick="document.getElementById('output').innerText = '';
+              countdownTimer(document.getElementById('targetTime').value)"
     >
       Set timer
     </button>
     <hr />
-    <p id="output"></p>
+    <p
+      style="
+        font-size: 5rem;
+        font-weight: bolder;
+        font-family: Arial, Helvetica, sans-serif;
+      "
+      id="output"
+    ></p>
   </body>
 </html>
